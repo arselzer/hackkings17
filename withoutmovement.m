@@ -1,15 +1,32 @@
-function imageOut = withoutmovement(bild1, bild2)
+function imageOut = withoutmovement(bilderstr);
 
-p1 = double(imread('r.jpg'));
-p2 = double(imread('ac1.png'));
-p3 = double(imread('r.jpg'));
-p4 = double(imread('t.JPG'));
-p5 = double(imread('z.JPG'));
-p6 = double(imread('w.JPG'));
-p7 = double(imread('i.JPG'));
-p8 = double(imread('r.JPG'));
+bilder = split(bilderstr, string(':'));
+p1 = double(imread(char(bilder(1))));
+p2 = double(imread(char(bilder(2))));
+p3 = double(imread(char(bilder(3))));
+p4 = double(imread(char(bilder(4))));
+p5 = double(imread(char(bilder(5))));
+p6 = double(imread(char(bilder(6))));
+p7 = double(imread(char(bilder(7))));
+p8 = double(imread(char(bilder(8))));
 
 
+
+% inPic = imread('a.png');
+% [x,y]= size(str)
+for s = 1: 2
+    disp(s)
+    if s==1
+        inPic = p1;
+        diffMat = abs( p1 - firstCol);
+    elseif s==2
+        inPic = p2;
+        diffMat = abs( p2 - firstCol);
+    elseif s == 3
+        inPic = p3;
+        diffMat = abs( p3 - firstCol);
+    elseif s == 4
+        inPic = p4;
 [hight,with, y] = size(p1);
 firstHit = zeros(hight,with);
 secondHit = zeros(hight,with);

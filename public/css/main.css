@@ -11,3 +11,9 @@ body {
 	display: block;
 	cursor: pointer;
 }
+
+#reset-btn {
+	margin: 40px auto 0 auto;
+	display: block;
+	cursor: pointer;
+}

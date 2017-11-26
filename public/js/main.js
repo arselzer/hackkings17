@@ -7,6 +7,15 @@ if (!userId) {
 
 var file_count = 0;
 
+console.log("User id: " + userId);
+
+var resetButton = document.querySelector("#reset-btn");
+
+resetButton.addEventListener("click", function() {
+  userId = Math.floor(Math.random() * 100000000);
+  sessionStorage.setItem("user-id", userId);
+});
+
 Dropzone.options.imageUpload = {
 
   // Prevents Dropzone from uploading dropped files immediately
