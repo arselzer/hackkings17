@@ -64,7 +64,7 @@ app.get("/result/:id", function(req, res) {
 			return "string('" + __dirname + "/data/input/" + req.params.id + "/" + file + "')";
 		}).join("; ");
 		var output = __dirname + "/data/output/" + req.params.id + ".jpg";
-		var matlab_in = "withoutmovement([" + files2 + "], '" + output + "')";
+		var matlab_in = "withoutmovement([" + files2 + "], '" + output + "', " + files.length + ")";
 
 		exec('/home/as/Matlab/bin/matlab /r "' + matlab_in + '"', function callback(error, stdout, stderr){
 			if (error) {

@@ -32,7 +32,7 @@ thirdCol = zeros(hight,with,3);
 
 % inPic = imread('a.png');
 % [x,y]= size(str)
-for s = 1: HMIMage
+for s = 1: HMImage
     disp(s)
     if s==1
         inPic = p1;

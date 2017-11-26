@@ -1,14 +1,23 @@
-function imageOut = withoutmovement(bilder, outputstr);
+function imageOut = withoutmovement(bilder, outputstr, HMImage);
 
+ p1 = double(imread(char(bilder(1))));
+ if HMImage <= 2
+    p2 = double(imread(char(bilder(2))));
+    elseif HMImage <= 3
+        p2 = double(imread(char(bilder(3))));
+        elseif HMImage <= 4
+            p4 = double(imread(char(bilder(4))));
+            elseif HMImage <= 5
+                p5 = double(imread(char(bilder(5))));
+                elseif HMImage <= 6
+                    p6 = double(imread(char(bilder(6))));
+                    elseif HMImage <= 7
+                        p7 = double(imread(char(bilder(7))));
+                        elseif HMImage <= 8
+                            p8 = double(imread(char(bilder(8))));
+                            
+end
 %bilder = split(bilderstr, string(':'));
-p1 = double(imread(char(bilder(1))));
-p2 = double(imread(char(bilder(2))));
-p3 = double(imread(char(bilder(3))));
-p4 = double(imread(char(bilder(4))));
-p5 = double(imread(char(bilder(5))));
-p6 = double(imread(char(bilder(6))));
-p7 = double(imread(char(bilder(7))));
-p8 = double(imread(char(bilder(8))));
 
 
 [hight,with, y] = size(p1);
@@ -22,7 +31,7 @@ thirdCol = zeros(hight,with,3);
 
 % inPic = imread('a.png');
 % [x,y]= size(str)
-for s = 1: 6
+for s = 1: HMImage
     disp(s)
     if s==1
         inPic = p1;
