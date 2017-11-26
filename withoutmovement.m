@@ -1,6 +1,6 @@
-function imageOut = withoutmovement(bilderstr);
+function imageOut = withoutmovement(bilder, outputstr);
 
-bilder = split(bilderstr, string(':'));
+%bilder = split(bilderstr, string(':'));
 p1 = double(imread(char(bilder(1))));
 p2 = double(imread(char(bilder(2))));
 p3 = double(imread(char(bilder(3))));
@@ -11,22 +11,6 @@ p7 = double(imread(char(bilder(7))));
 p8 = double(imread(char(bilder(8))));
 
 
-
-% inPic = imread('a.png');
-% [x,y]= size(str)
-for s = 1: 2
-    disp(s)
-    if s==1
-        inPic = p1;
-        diffMat = abs( p1 - firstCol);
-    elseif s==2
-        inPic = p2;
-        diffMat = abs( p2 - firstCol);
-    elseif s == 3
-        inPic = p3;
-        diffMat = abs( p3 - firstCol);
-    elseif s == 4
-        inPic = p4;
 [hight,with, y] = size(p1);
 firstHit = zeros(hight,with);
 secondHit = zeros(hight,with);
@@ -38,7 +22,7 @@ thirdCol = zeros(hight,with,3);
 
 % inPic = imread('a.png');
 % [x,y]= size(str)
-for s = 1: 2
+for s = 1: 6
     disp(s)
     if s==1
         inPic = p1;
@@ -257,6 +241,9 @@ end
 %     end 
 % end
 imageOut = image(uint8(firstCol));
+
+imwrite(uint8(firstCol), outputstr)
+
 
 % J = imnoise(firstCol,'salt & pepper',0.02);
 % 
