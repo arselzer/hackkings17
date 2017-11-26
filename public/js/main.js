@@ -1,6 +1,6 @@
 
 var userId = sessionStorage.getItem("user-id");
-if (!userid) {
+if (!userId) {
   userId = Math.floor(Math.random() * 100000000);
   sessionStorage.setItem("user-id", userId);
 }
@@ -11,6 +11,7 @@ Dropzone.options.imageUpload = {
 
   // Prevents Dropzone from uploading dropped files immediately
   autoProcessQueue: false,
+  paramName: userId,
 
   init: function() {
     var submitButton = document.querySelector("#submit-all")
@@ -28,8 +29,8 @@ Dropzone.options.imageUpload = {
 
     this.on("success", function(file, responseText) {
       console.log("success");
-      // Handle the responseText here. For example, add the text to the preview element:
-      //file.previewTemplate.appendChild(document.createTextNode(responseText));
+
+      window.location.replace("/result/" + userId);
     });
 
   }
