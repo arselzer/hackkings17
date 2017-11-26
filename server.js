@@ -11,6 +11,7 @@ var storage = multer.memoryStorage();
 var upload = multer({ storage: storage });
 
 var exec = require('child_process').exec;
+var execFile = require('child_process').execFile;
 
 //app.get("/", express.static("public"));
 app.use(express.static("public"));
@@ -64,11 +65,17 @@ app.get("/result/:id", function(req, res) {
 			return "string('" + __dirname + "/data/input/" + req.params.id + "/" + file + "')";
 		}).join("; ");
 		var output = __dirname + "/data/output/" + req.params.id + ".jpg";
-		var matlab_in = "withoutmovement([" + files2 + "], '" + output + "', " + files.length + ")";
+		var matlab_in = "\"withoutmovement([" + files2 + "], '" + output + "', " + files.length + ")\"";
 
-		exec('/home/as/Matlab/bin/matlab /r "' + matlab_in + '"', function callback(error, stdout, stderr){
+		//exec('/home/as/Matlab/bin/matlab /r "' + matlab_in + '"', {
+		//execFile("/home/as/Matlab/bin/matlab",  ["/r", matlab_in],
+		execFile("/home/as/Matlab/bin/matlab",  ["-nosplash", "-nodesktop", "-r", matlab_in],
+		function callback(error, stdout, stderr) {
+			console.log(stdout);
+			console.log(stderr);
+
 			if (error) {
-				console.log(error);
+				console.log("Error exec: " + error);
 				//process.exit(1);
 			}
 
@@ -76,7 +83,7 @@ app.get("/result/:id", function(req, res) {
 				root: __dirname + '/public/'
 			}, function(err) {
 					if (err) {
-						console.log(err);
+						console.log("Error send: " + err);
 						//process.exit(1);
 					}
 			})
