@@ -14,6 +14,7 @@ var upload = multer({ storage: storage });
 //app.get("/", express.static("public"));
 app.use(express.static("public"));
 
+/*
 app.get("/result/:id", function(req, res) {
 	var id = req.params.id;
 
@@ -34,6 +35,7 @@ app.get("/result/:id", function(req, res) {
 		});
 	});
 });
+*/
 
 app.post("/upload", upload.any(), function(req, res) {
 	var hash = crypto.createHash('sha256');
@@ -50,7 +52,14 @@ app.post("/upload", upload.any(), function(req, res) {
 });
 
 app.get("/result/:id", function(req, res) {
+	fs.readdir("data/input/" + req.params.id, function(err, files) {
+		if (err) {
+			res.send("error");
+		}
 
+		console.log("processing files for user " + req.params.id + ": " + files);
+		res.send("ok");
+	})
 });
 
 app.listen(PORT, function() {

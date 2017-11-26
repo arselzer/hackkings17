@@ -32,6 +32,5 @@ Dropzone.options.imageUpload = {
 
       window.location.replace("/result/" + userId);
     });
-
   }
 };
