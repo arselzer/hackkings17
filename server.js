@@ -30,7 +30,13 @@ app.get("/result/:id", function(req, res) {
 });
 
 app.post("/upload", function(req, res) {
-	
+  fs.readFile(req.files.file.path, function(err, data) {
+    var newPath = __dirname + "/data/input";
+    fs.writeFile(newPath, data, function (err) {
+      console.log("Finished writing file..." + err);
+      res.send("ok");
+    });
+  });
 });
 
 app.listen(PORT, function() {
